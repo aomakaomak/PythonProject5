@@ -1,5 +1,6 @@
 import masks
 
+
 def mask_account_card(user_input: str) -> str:
     """Функция универсальной маскировки номера счета либо карты"""
     list_user_input = user_input.split()

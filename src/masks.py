@@ -1,4 +1,4 @@
-def get_mask_card_number(card_number: int) -> str:
+def get_mask_card_number(card_number: str) -> str:
     """Функция маскировки номера карты"""
     string = str(card_number)
     return f"{string[0:4]} {string[4:6]}** **** {string[12:16]}"
@@ -8,7 +8,7 @@ def get_mask_card_number(card_number: int) -> str:
 # print(get_mask_card_number(card_number))
 
 
-def get_mask_account(acount_number: int) -> str:
+def get_mask_account(acount_number: str) -> str:
     """Функция маскировки расчетного счета"""
     string = str(acount_number)
     return f"**{string[-4:-1]}{string[-1]}"
