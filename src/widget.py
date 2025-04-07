@@ -16,5 +16,16 @@ def mask_account_card(user_input: str) -> str:
     return string
 
 
-user_input = "Visa Platinum 7000792289606361"
-print(mask_account_card(user_input))
+# user_input = "Visa Platinum 7000792289606361"
+# print(mask_account_card(user_input))
+
+# user_input = "Счет 32984925828374"
+# print(mask_account_card(user_input))
+
+def get_date(date_input: str) -> str:
+    """Функция преобразования даты"""
+    date_formatted = f"{date_input[8:10]}.{date_input[5:7]}.{date_input[0:4]}"
+    return date_formatted
+
+# date_input = "2024-03-11T02:26:18.671407"
+# print(get_date(date_input))
