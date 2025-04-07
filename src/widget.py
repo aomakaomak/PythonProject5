@@ -1,16 +1,18 @@
 import masks
 
 def mask_account_card(user_input: str) -> str:
+    """Функция универсальной маскировки номера счета либо карты"""
     list_user_input = user_input.split()
     string = ""
     if "Счет" in user_input:
-        for word in list_user_input:
-            if word.isdigit():
-                string = masks.get_mask_account(word)
+        for i in range(0, len(list_user_input)):
+            if list_user_input[i].isdigit():
+                list_user_input[i] = masks.get_mask_account(list_user_input[i])
     else:
-        for word in list_user_input:
-            if word.isdigit():
-                string = masks.get_mask_card_number(word)
+        for i in range(0, len(list_user_input)):
+            if list_user_input[i].isdigit():
+                list_user_input[i] = masks.get_mask_card_number(list_user_input[i])
+    string = " ".join(list_user_input)
     return string
 
 
