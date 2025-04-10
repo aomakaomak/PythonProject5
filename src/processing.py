@@ -20,6 +20,7 @@ def filter_by_state(new_list: Iterable[Any], user_state="EXECUTED") -> Iterable:
 
 
 def sort_by_date(user_list: Iterable[Any], decreasing=True) -> Iterable:
+    """Функция, которая сортирует словари в списке по дате"""
     sorted_by_day_list = sorted(user_list, reverse=decreasing, key=lambda x: x["date"])
     return sorted_by_day_list
 
