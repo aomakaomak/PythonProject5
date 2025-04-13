@@ -1,7 +1,10 @@
 def get_mask_card_number(card_number: str) -> str:
     """Функция маскировки номера карты"""
     string = str(card_number)
-    return f"{string[0:4]} {string[4:6]}** **** {string[12:16]}"
+    if string.isdigit():
+        return f"{string[0:4]} {string[4:6]}** **** {string[12:16]}"
+    else:
+        return "Ошибка. Пожалуйста, введите номер карты"
 
 
 # card_number = 7000792289606361
