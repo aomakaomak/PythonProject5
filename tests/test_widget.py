@@ -2,8 +2,6 @@ import pytest
 
 from src.widget import mask_account_card, get_date
 
-from tests.conftest import user_input_correct
-
 
 @pytest.mark.parametrize(
     "value, expected",
