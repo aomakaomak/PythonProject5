@@ -32,5 +32,5 @@ test_processing.py и test_widget.py, в которых реализованы
 соответствующие тесты.
 В файлах test_masks.py и test_widget.py тесты реализованы с помощью 
 pytest.mark.parametrize,  в файле test_processing.py с помощью
-фикстур и файла conftest.py.
+фикстур и conftest.py.
 
