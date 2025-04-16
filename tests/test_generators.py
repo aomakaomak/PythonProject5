@@ -1,5 +1,5 @@
 import pytest
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 
 transactions = [
     {
@@ -41,23 +41,52 @@ transactions = [
 ]
 
 
-def test_filter_by_currency_eur(currency_eur):
-    assert (
-        list(
-            transactions[i]
-            for i in range(0, len(transactions))
-            if transactions[i]["operationAmount"]["currency"]["name"] == "EUR"
-        )
-        == currency_eur
-    )
-
-
 def test_filter_by_currency_usd(currency_usd):
-    assert (
-        list(
-            transactions[i]
-            for i in range(0, len(transactions))
-            if transactions[i]["operationAmount"]["currency"]["name"] == "USD"
-        )
-        == currency_usd
-    )
+    generator = filter_by_currency(transactions, "USD")
+    assert list(generator) == currency_usd
+
+
+def test_filter_by_currency_eur(currency_eur):
+    generator = filter_by_currency(transactions, "EUR")
+    assert list(generator) == currency_eur
+
+def test_filter_by_currency_empty():
+    empty_list = []
+    generator = filter_by_currency(empty_list, "EUR")
+    assert list(generator) == []
+
+
+# def test_filter_by_currency_eur(currency_eur):
+#     assert (
+#         list(
+#             transactions[i]
+#             for i in range(0, len(transactions))
+#             if transactions[i]["operationAmount"]["currency"]["name"] == "EUR"
+#         )
+#         == currency_eur
+#     )
+#
+#
+# def test_filter_by_currency_usd(currency_usd):
+#     assert (
+#         list(
+#             transactions[i]
+#             for i in range(0, len(transactions))
+#             if transactions[i]["operationAmount"]["currency"]["name"] == "USD"
+#         )
+#         == currency_usd
+#     )
+
+def test_transaction_descriptions():
+    generator = transaction_descriptions(transactions)
+    assert next(generator) == "Перевод организации"
+    assert next(generator) == "Перевод со счета на счет"
+    assert next(generator) == "Перевод со счета на счет"
+
+
+def test_transaction_descriptions_empty():
+    empty_list = []
+    generator = transaction_descriptions(empty_list)
+    assert next(generator) == []
+
+
