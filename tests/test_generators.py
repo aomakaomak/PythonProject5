@@ -1,18 +1,7 @@
-from typing import Iterator
+import pytest
+from src.generators import filter_by_currency
 
-
-def filter_by_currency(transactions: list[dict], currency: str) -> Iterator:
-    """
-    Функция, которая принимает список словарей (банковский операций)
-    и название нужной валюты и выводит список операций с заданной валютой
-    """
-    yield (
-        transactions[i]
-        for i in range(0, len(transactions))
-        if transactions[i]["operationAmount"]["currency"]["name"] == currency
-    )
-
-gen = filter_by_currency([
+transactions = [
     {
         "id": 939719570,
         "state": "EXECUTED",
@@ -48,9 +37,27 @@ gen = filter_by_currency([
         "description": "Перевод со счета на счет",
         "from": "Счет 19708645243227258542",
         "to": "Счет 75651667383060284188",
-    }
-], "USD")
-
-print(type(gen))
+    },
+]
 
 
+def test_filter_by_currency_eur(currency_eur):
+    assert (
+        list(
+            transactions[i]
+            for i in range(0, len(transactions))
+            if transactions[i]["operationAmount"]["currency"]["name"] == "EUR"
+        )
+        == currency_eur
+    )
+
+
+def test_filter_by_currency_usd(currency_usd):
+    assert (
+        list(
+            transactions[i]
+            for i in range(0, len(transactions))
+            if transactions[i]["operationAmount"]["currency"]["name"] == "USD"
+        )
+        == currency_usd
+    )
