@@ -25,3 +25,12 @@
 ### 2. sort_by_date
 Принимает список словарей и сортирует их по дате
 
+## Тестирование
+Создан пакет tests  с тестами.
+В ней размещены модули test_masks.py,
+test_processing.py и test_widget.py, в которых реализованы 
+соответствующие тесты.
+В файлах test_masks.py и test_widget.py тесты реализованы с помощью 
+pytest.mark.parametrize,  в файле test_processing.py с помощью
+фикстур и conftest.py.
+
