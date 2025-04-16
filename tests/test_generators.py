@@ -1,5 +1,9 @@
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import (
+    filter_by_currency,
+    transaction_descriptions,
+    card_number_generator,
+)
 
 transactions = [
     {
@@ -50,32 +54,17 @@ def test_filter_by_currency_eur(currency_eur):
     generator = filter_by_currency(transactions, "EUR")
     assert list(generator) == currency_eur
 
-def test_filter_by_currency_empty():
+
+def test_filter_by_currency_empty_list():
     empty_list = []
     generator = filter_by_currency(empty_list, "EUR")
     assert list(generator) == []
 
 
-# def test_filter_by_currency_eur(currency_eur):
-#     assert (
-#         list(
-#             transactions[i]
-#             for i in range(0, len(transactions))
-#             if transactions[i]["operationAmount"]["currency"]["name"] == "EUR"
-#         )
-#         == currency_eur
-#     )
-#
-#
-# def test_filter_by_currency_usd(currency_usd):
-#     assert (
-#         list(
-#             transactions[i]
-#             for i in range(0, len(transactions))
-#             if transactions[i]["operationAmount"]["currency"]["name"] == "USD"
-#         )
-#         == currency_usd
-#     )
+def test_filter_by_currency_rub():
+    generator = filter_by_currency(transactions, "RUB")
+    assert list(generator) == []
+
 
 def test_transaction_descriptions():
     generator = transaction_descriptions(transactions)
@@ -90,3 +79,30 @@ def test_transaction_descriptions_empty():
     assert next(generator) == []
 
 
+def test_card_number_generator_1():
+    generator = card_number_generator(100, 103)
+    assert next(generator) == "0000 0000 0000 0100"
+    assert next(generator) == "0000 0000 0000 0101"
+    assert next(generator) == "0000 0000 0000 0102"
+
+
+def test_card_number_generator_2():
+    generator = card_number_generator(10093730, 94389384844)
+    assert next(generator) == "0000 0000 1009 3730"
+    assert next(generator) == "0000 0000 1009 3731"
+    assert next(generator) == "0000 0000 1009 3732"
+
+
+@pytest.mark.parametrize(
+    "start, stop, expected",
+    [
+        (99999999999999999, 999999999999999999, "Вы вышли за диапазон значений"),
+        (0, 99999999999999999999999, "Вы вышли за диапазон значений"),
+        (-15, 9999999, "Вы вышли за диапазон значений"),
+        (10, 5, "Старт должен быть меньше стопа"),
+        (None, None, "Введите 2 числа"),
+    ],
+)
+def test_card_number_generator_max(start, stop, expected):
+    generator = card_number_generator(start, stop)
+    assert next(generator) == expected

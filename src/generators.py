@@ -9,11 +9,6 @@ def filter_by_currency(transactions: list[dict], currency: str) -> Iterator:
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["name"] == currency:
             yield transaction
-    # yield (
-    #     transactions[i]
-    #     for i in range(0, len(transactions))
-    #     if transactions[i]["operationAmount"]["currency"]["name"] == currency
-    # )
 
 
 def transaction_descriptions(transactions: list[dict]) -> Iterator:
@@ -28,47 +23,26 @@ def transaction_descriptions(transactions: list[dict]) -> Iterator:
             yield transaction["description"]
 
 
-
-
-
-# transactions = [
-#     {
-#         "id": 939719570,
-#         "state": "EXECUTED",
-#         "date": "2018-06-30T02:08:58.425572",
-#         "operationAmount": {
-#             "amount": "9824.07",
-#             "currency": {"name": "USD", "code": "USD"},
-#         },
-#         "description": "Перевод организации",
-#         "from": "Счет 75106830613657916952",
-#         "to": "Счет 11776614605963066702",
-#     },
-#     {
-#         "id": 142264268,
-#         "state": "EXECUTED",
-#         "date": "2019-04-04T23:20:05.206878",
-#         "operationAmount": {
-#             "amount": "79114.93",
-#             "currency": {"name": "USD", "code": "USD"},
-#         },
-#         "description": "Перевод со счета на счет",
-#         "from": "Счет 19708645243227258542",
-#         "to": "Счет 75651667383060284188",
-#     },
-#     {
-#         "id": 142264287,
-#         "state": "CANCELED",
-#         "date": "2019-05-04T23:20:05.206878",
-#         "operationAmount": {
-#             "amount": "79614.93",
-#             "currency": {"name": "EUR", "code": "EUR"},
-#         },
-#         "description": "Перевод со счета на счет",
-#         "from": "Счет 19708645243227258542",
-#         "to": "Счет 75651667383060284188",
-#     }
-# ]
-
-
-
+def card_number_generator(start: int, stop: int) -> Iterator:
+    """
+    Функция генерации номеров банковских карт
+    """
+    if not start and not stop:
+        yield "Введите 2 числа"
+    elif start < 1 or stop > 9999999999999999:
+        yield "Вы вышли за диапазон значений"
+    elif start >= stop:
+        yield "Старт должен быть меньше стопа"
+    elif start >= 1 and stop <= 9999999999999999:
+        for number in range(start, stop):
+            str_number = str(number)  # преобразуем число в строку
+            len_number = len(str_number)  # вычисляем длину строки-числа
+            if len_number <= 16:
+                len_zero = 16 - len_number  # вычисляем нужное количество нулей
+                full_number = (
+                    "0" * len_zero
+                ) + str_number  # формируем строку пока без пробелов
+                result = f"{full_number[0:4]} {full_number[4:8]} {full_number[8:12]} {full_number[12:]}"
+                yield result
+            else:
+                yield "Вы вышли за диапазон значений"
