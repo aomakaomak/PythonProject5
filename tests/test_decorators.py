@@ -1,6 +1,9 @@
-import pytest
 import time
+
+import pytest
+
 from src.decorators import log
+
 
 def test_log_empty():
 
@@ -17,7 +20,7 @@ def test_log_empty():
 
 def test_log_filename():
 
-    @log(filename = "log.txt")
+    @log(filename="log.txt")
     def delete(a, b):
         time.sleep(2)
         return a / b
@@ -26,4 +29,3 @@ def test_log_filename():
     assert result == 2
     result = delete(100, 0)
     assert result == "delete error: ZeroDivisionError. Inputs: (100, 0), {} \n"
-

@@ -1,11 +1,10 @@
 import time
 from functools import wraps
-
-
 from pyexpat.errors import messages
 
 
-def log(filename = None):
+def log(filename=None):
+    """Декоратор, который записывает логи в консоль либо в файл"""
 
     def wrapper(func):
 
@@ -27,7 +26,7 @@ def log(filename = None):
                 if filename == None:
                     print(message_ok)
                 else:
-                    with open(filename, 'a', encoding="utf8") as file:
+                    with open(filename, "a", encoding="utf8") as file:
                         file.write(message_ok)
                 return result
 
@@ -36,12 +35,10 @@ def log(filename = None):
     return wrapper
 
 
-
 @log(filename="log.txt")
 def delete(a, b):
     time.sleep(2)
-    return a/b
+    return a / b
+
 
 print(delete(100, 0))
-
-
