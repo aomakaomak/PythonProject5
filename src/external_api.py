@@ -24,15 +24,3 @@ def get_amount(transaction: dict) -> float:
             operation_amount = f"Error: {response.status_code}", response.text
     return operation_amount
 
-
-test_tr = {
-    "id": 441945886,
-    "state": "EXECUTED",
-    "date": "2019-08-26T10:50:58.294041",
-    "operationAmount": {"amount": "1000", "currency": {"name": "руб.", "code": "EUR"}},
-    "description": "Перевод организации",
-    "from": "Maestro 1596837868705199",
-    "to": "Счет 64686473678894779589",
-}
-
-print(get_amount(test_tr))

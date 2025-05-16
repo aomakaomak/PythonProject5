@@ -13,7 +13,3 @@ def get_transactions(file_path: str) -> list:
             return transactions_list
         else:
             return []
-
-
-# print(get_transactions("data/operations.json"))
-# print(get_transactions("data/test.json"))
