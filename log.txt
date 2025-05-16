@@ -100,3 +100,28 @@ delete error: ZeroDivisionError. Inputs: (100, 0), {}
 delete error: ZeroDivisionError. Inputs: (100, 0), {} 
 delete Время начала работы 18:56:34, время конца работы 18:56:36 
 delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 22:51:15, время конца работы 22:51:17 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 22:52:28, время конца работы 22:52:30 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 22:53:55, время конца работы 22:53:57 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 22:55:19, время конца работы 22:55:21 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 22:56:05, время конца работы 22:56:07 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 23:00:13, время конца работы 23:00:15 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 23:01:22, время конца работы 23:01:24 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 
+delete Время начала работы 23:02:42, время конца работы 23:02:44 
+delete error: ZeroDivisionError. Inputs: (100, 0), {} 

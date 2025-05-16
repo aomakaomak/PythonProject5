@@ -37,7 +37,8 @@ def test_get_amount(mock_get):
 def test_get_amount_404(mock_get):
     mock_get.return_value.json.return_value = answer
     mock_get.return_value.status_code = 404
-    assert get_amount(test_data) == "Error: 404"
+    with pytest.raises(Exception):
+        get_amount(test_data)
     mock_get.assert_called_once_with(
         "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=100",
         headers={"apikey": API_KEY},

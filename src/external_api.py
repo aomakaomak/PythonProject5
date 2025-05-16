@@ -16,22 +16,8 @@ def get_amount(transaction: dict) -> float:
         url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency_from}&amount={amount}"
         headers = {"apikey": API_KEY}
         response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            data = response.json()
-            operation_amount = data["result"]
-        else:
-            operation_amount = f"Error: {response.status_code}"
+        if response.status_code != 200:
+            raise Exception("Failed to convert currency")
+        data = response.json()
+        operation_amount = data["result"]
     return operation_amount
-
-
-test_data = {
-    "id": 441945886,
-    "state": "EXECUTED",
-    "date": "2019-08-26T10:50:58.294041",
-    "operationAmount": {"amount": "100", "currency": {"name": "руб.", "code": "USD"}},
-    "description": "Перевод организации",
-    "from": "Maestro 1596837868705199",
-    "to": "Счет 64686473678894779589",
-}
-
-print(get_amount(test_data))
