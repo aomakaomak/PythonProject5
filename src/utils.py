@@ -15,8 +15,8 @@ def get_transactions(file_path: str) -> list:
         logger.info("Открываем файл и записываем его содержимое в переменную")
         with open(file_path, "r", encoding="UTF-8") as json_file:
             transactions_list = json.load(json_file)
-    except:
-        logger.error("Не удалось открыть файл")
+    except Exception as ex:
+        logger.error(f"Не удалось открыть файл. Ошибка {ex}")
         return []
     else:
         if isinstance(transactions_list, list):
