@@ -1,6 +1,5 @@
 import pytest
-import requests
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 from src.external_api import get_amount, API_KEY
 
 test_data = {

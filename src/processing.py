@@ -1,6 +1,3 @@
-from typing import Any, Callable, Iterable, Optional, Union
-
-
 def filter_by_state(new_list: list[dict], user_state="EXECUTED") -> list[dict]:
     """Фуккция, которая выводит список словарей в зависимости от состояния"""
     filtered_list = []
