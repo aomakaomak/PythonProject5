@@ -1,6 +1,5 @@
 import time
 from functools import wraps
-from pyexpat.errors import messages
 
 
 def log(filename=None):
@@ -23,7 +22,7 @@ def log(filename=None):
                 result = message_ok
 
             finally:
-                if filename == None:
+                if filename is None:
                     print(message_ok)
                 else:
                     with open(filename, "a", encoding="utf8") as file:
