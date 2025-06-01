@@ -1321,9 +1321,8 @@ def search_into_description():
   }
 ]
 
-
 @pytest.fixture
-def search_into_description_with_error():
+def trans_count():
     return [
   {
     "id": 441945886,
@@ -1351,7 +1350,7 @@ def search_into_description_with_error():
         "code": "USD"
       }
     },
-    "description": "Перевод физическому лицу",
+    "description": "Оплата за коммуналку",
     "from": "MasterCard 7158300734726758",
     "to": "Счет 35383033474447895560"
   },
@@ -1366,7 +1365,12 @@ def search_into_description_with_error():
         "code": "USD"
       }
     },
+    "description": "Перевод организации",
     "from": "Счет 75106830613657916952",
     "to": "Счет 11776614605963066702"
   }
 ]
+
+@pytest.fixture
+def get_categories():
+    return ["Оплата за коммуналку", "Перевод организации"]
