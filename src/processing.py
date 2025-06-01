@@ -5,7 +5,7 @@ def filter_by_state(new_list: list[dict], user_state="EXECUTED") -> list[dict]:
         return "Введите список"
     else:
         for dictionary in new_list:
-            if dictionary["state"] == user_state:
+            if (dictionary["state"]).lower() == user_state:
                 filtered_list.append(dictionary)
         return filtered_list
 
